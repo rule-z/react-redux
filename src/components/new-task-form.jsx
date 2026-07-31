@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ADD_TASK } from '../services/tasks/actions.js';
+import { addTask } from '../services/tasks/actions.js';
 
 export const NewTaskForm = () => {
   const [inputValue, setInputValue] = useState('');
@@ -13,13 +13,8 @@ export const NewTaskForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch({
-      type: ADD_TASK,
-      payload: {
-        content: inputValue,
-        id: Math.random().toString(),
-      },
-    });
+    dispatch(addTask(inputValue));
+    setInputValue('');
   };
 
   return (
