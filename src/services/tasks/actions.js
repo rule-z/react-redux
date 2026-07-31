@@ -12,13 +12,24 @@ export const REMOVE_TASK_SUCCESS = 'REMOVE_TASK_SUCCESS';
 
 export const LOAD_TASKS_SUCCESS = 'LOAD_TASKS_SUCCESS';
 
+export const TASKS_ERROR = 'TASKS_ERROR';
+export const TASKS_LOADING = 'TASKS_LOADING';
+
 export const loadAsyncTasks = () => (dispatch) => {
-  getProjectTasks().then((res) => {
-    dispatch({
-      type: LOAD_TASKS_SUCCESS,
-      payload: res,
+  dispatch({ type: TASKS_LOADING });
+  getProjectTasks()
+    .then((res) => {
+      dispatch({
+        type: LOAD_TASKS_SUCCESS,
+        payload: res,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: TASKS_ERROR,
+        payload: error.message,
+      });
     });
-  });
 };
 
 export const addTask = (text) => ({
