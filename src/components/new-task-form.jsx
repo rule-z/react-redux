@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ADD_TASK } from '../../services/tasks/actions.js';
+import { ADD_TASK } from '../services/tasks/actions.js';
 
 export const NewTaskForm = () => {
   const [inputValue, setInputValue] = useState('');

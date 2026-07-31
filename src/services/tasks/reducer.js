@@ -1,5 +1,3 @@
-import { produce } from 'immer';
-
 import { ADD_TASK, REMOVE_TASK } from './actions.js';
 
 const initialState = {
@@ -9,13 +7,12 @@ const initialState = {
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK:
-      return produce(state, (draftState) => {
-        draftState.tasks.push(action.payload);
-      });
+      return { ...state, tasks: [...state.tasks, action.payload] };
     case REMOVE_TASK:
-      return produce(state, (draftState) => {
-        draftState.tasks = draftState.tasks.filter((task) => task.id !== action.payload);
-      });
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
+      };
     default:
       return state;
   }

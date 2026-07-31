@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useDispatch } from 'react-redux';
 
-import { REMOVE_TASK } from '../../services/tasks/actions.js';
+import { REMOVE_TASK } from '../services/tasks/actions.js';
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
