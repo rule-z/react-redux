@@ -1,24 +1,10 @@
 import { useSelector } from 'react-redux';
 
+import { getTasks } from '../services/tasks/selectors.js';
 import { Task } from './task.jsx';
 
 export const TasksList = () => {
-  // const projectTasks = [
-  //   {
-  //     content: 'Задача 1',
-  //     id: '1',
-  //   },
-  //   {
-  //     content: 'Задача 2',
-  //     id: '2',
-  //   },
-  //   {
-  //     content: 'Задача 3',
-  //     id: '3',
-  //   },
-  // ];
-
-  const projectTasks = useSelector((store) => store.tasks.tasks);
+  const projectTasks = useSelector(getTasks);
 
   return (
     <ul>
