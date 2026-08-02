@@ -15,7 +15,7 @@ export const LOAD_TASKS_SUCCESS = 'LOAD_TASKS_SUCCESS';
 export const TASKS_ERROR = 'TASKS_ERROR';
 export const TASKS_LOADING = 'TASKS_LOADING';
 
-export const loadAsyncTasks = () => (dispatch) => {
+export const loadTasks = () => (dispatch) => {
   dispatch({ type: TASKS_LOADING });
   getProjectTasks()
     .then((res) => {
