@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loadAsyncTasks } from '../services/tasks/actions.js';
+import { loadTasks } from '../services/tasks/actions.js';
 import {
   getTasks,
   getTasksError,
@@ -17,7 +17,7 @@ export const App = () => {
   const error = useSelector(getTasksError);
 
   useEffect(() => {
-    dispatch(loadAsyncTasks());
+    dispatch(loadTasks());
   }, []);
 
   if (loading) {
