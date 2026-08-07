@@ -18,3 +18,11 @@ export const removeTask = createAsyncThunk('tasks/removeTask', async (id) => {
   await deleteTaskById(id);
   return id;
 });
+
+export const logAddTask = createAsyncThunk(
+  'tasks/logAddTask',
+  async (text, { dispatch }) => {
+    console.log('logAddTask', text);
+    dispatch(addTask(text));
+  }
+);
