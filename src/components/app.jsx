@@ -6,7 +6,7 @@ import {
   getTasks,
   getTasksError,
   getTasksLoading,
-} from '../services/tasks/selectors.js';
+} from '../services/tasks/tasksSlice.js';
 import { NewTaskForm } from './new-task-form.jsx';
 import { TasksList } from './tasks-list.jsx';
 

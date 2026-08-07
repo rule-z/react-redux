@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { getTasks } from '../services/tasks/selectors.js';
+import { getTasks } from '../services/tasks/tasksSlice.js';
 import { Task } from './task.jsx';
 
 export const TasksList = () => {
