@@ -1,30 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { loadTasks } from '../services/tasks/actions.js';
-import {
-  getTasks,
-  getTasksError,
-  getTasksLoading,
-} from '../services/tasks/tasksSlice.js';
+import { useGetProjectTasksQuery } from '../services/tasks/api.js';
 import { NewTaskForm } from './new-task-form.jsx';
 import { TasksList } from './tasks-list.jsx';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const tasks = useSelector(getTasks);
-  const loading = useSelector(getTasksLoading);
-  const error = useSelector(getTasksError);
-
-  useEffect(() => {
-    dispatch(loadTasks());
-  }, []);
+  const { isLoading: loading, error, data: tasks } = useGetProjectTasksQuery();
 
   if (loading) {
     return <h2>Загрузка...</h2>;
   }
 
-  if (error) {
+  if (!loading && error) {
     return <h2>{`Ошибка: ${error}`}</h2>;
   }
 

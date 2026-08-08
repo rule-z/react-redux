@@ -1,29 +1,17 @@
-// import { composeWithDevTools } from '@redux-devtools/extension';
-// import { combineReducers, createStore, applyMiddleware } from 'redux';
-// import { thunk } from 'redux-thunk';
+import { combineSlices, configureStore as createStore } from '@reduxjs/toolkit';
 
-// import { tasksReducer } from './tasks/tasksSlice.js';
+import { tasksApi } from './tasks/api.js';
 
-// const rootReducer = combineReducers({
-//   tasks: tasksReducer,
-// });
+const rootReducer = combineSlices(tasksApi);
 
-// export const configureStore = (initialState) => {
-//   return createStore(
-//     rootReducer,
-//     initialState,
-//     composeWithDevTools(applyMiddleware(thunk))
-//   );
-// };
+export const configureStore = (initialState) => {
+  return createStore({
+    reducer: rootReducer,
+    preloadedState: initialState,
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat(tasksApi.middleware);
+    },
+  });
+};
 
-// export const store = configureStore();
-
-import { combineSlices, configureStore } from '@reduxjs/toolkit';
-
-import { tasksSlice } from './tasks/tasksSlice.js';
-
-const rootReducer = combineSlices(tasksSlice);
-
-export const store =  configureStore({
-  reducer: rootReducer,
-});
+export const store = configureStore();
